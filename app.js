@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 
 // Setup your server and sockets
 var express = require('express');
-var routes = require('./routes/index');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -21,8 +20,11 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 // Setup KV database
-var redis = require("redis");
-DB = redis.createClient();  // Global
+REDIS = require("redis");
+DB = REDIS.createClient();  // Global
+
+// Setup global config
+CONFIG = require('./config/config.js')
 
 // Server boilerplate stuff
 ////////////////////////////////////////////
@@ -34,22 +36,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 ////////////////////////////////////////////
 
+var routes = require('./routes/index');
 app.use('/', routes);
 
-// Websocket setup
-io.on('connection', function(socket){
-    DB.set("user", "hello", redis.print);
-    console.log('a user connected');
-    DB.get("user", function(err, reply) {
-        // reply is null when the key is missing
-        console.log(reply);
-    });
-
-    // Socket events
-    socket.on('tweet-input', function(msg) {
-        console.log('You typed:' + msg);
-    });
-});
+// Websocket setup, this will only happen for
+// users who are served the client-side socket.io script.
+var socketAPI = require('./io_events')(io);
 
 http.listen(3000, function(){
   console.log('listening on *:3000');
