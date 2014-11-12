@@ -6,12 +6,11 @@ var MT_VIEW = {
   },
 
   bindEvents: function() {
-    $('#tweet').keyup(MT_VIEW.handleTweetInput);
+    $('.letter').click(MT_VIEW.handleTweetInput);
   },
 
   handleTweetInput: function(evt) {
-    var input = String.fromCharCode(evt.keyCode);
-    SOCKET.emit('tweet-input', input);
+    SOCKET.emit('tweet-input', evt.currentTarget.innerHTML);
   }
 };
 
