@@ -3,4 +3,11 @@
 <textarea id="tweet"></textarea>
 <textarea readonly id="tweet-final"></textarea>
 
+<% for (var i = 0; i < charset.length; i++) { 
+    var currChar = charset[i];
+%>
+	<button class="letter" type="button"><%= currChar %></button>
+<% 
+} %>
+
 <script src="/javascripts/tweet.js"></script>

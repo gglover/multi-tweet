@@ -6,17 +6,16 @@ var MT_VIEW = {
   },
 
   bindEvents: function() {
-    $('#tweet').keyup(MT_VIEW.handleTweetInput);
     SOCKET.on('tweet-updated', MT_VIEW.handleTweetUpdate);
+    $('.letter').click(MT_VIEW.handleTweetInput);
+  },
+  
+  handleTweetUpdate: function(msg) {
+    $('#tweet-final').val(msg.tweet);
   },
 
   handleTweetInput: function(evt) {
-    var input = String.fromCharCode(evt.keyCode);
-    SOCKET.emit('tweet-input', input);
-  },
-
-  handleTweetUpdate: function(msg) {
-    $('#tweet-final').val(msg.tweet);
+    SOCKET.emit('tweet-input', evt.currentTarget.innerHTML);
   }
 };
 
