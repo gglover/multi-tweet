@@ -1,13 +1,30 @@
 <% layout('layout') -%>
-<h1> <%= title %> </h1>
-<textarea id="tweet"></textarea>
+<meta charset="UTF-8"> 
+<h1><a href="https://twitter.com/cute_twoot"> <%= title %> </a></h1>
 <textarea readonly id="tweet-final"></textarea>
 
-<% for (var i = 0; i < charset.length; i++) { 
-    var currChar = charset[i];
+<div id="keyboard">
+<% for (var i = 0; i < charset.length; i++) {
+	if (i > 0) {
 %>
-	<button class="letter" type="button"><%= currChar %></button>
-<% 
+		<div class="letterRow">
+<%
+	} else {
+%>
+		<div id="numberRow">
+<%
+	}
+	for (var j = 0; j < charset[i].length; j++) { 
+    	var currChar = charset[i][j];
+%>
+		<button id="letter<%= Math.floor(j / 2 % 2) %>" class="letter" type="button"><%= currChar %></button>
+<%
+	} 
+%>
+	</div>
+	</br>
+<%
 } %>
+</div>
 
 <script src="/javascripts/tweet.js"></script>
