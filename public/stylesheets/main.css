@@ -1,8 +1,79 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  background-color: #ffcc66;
 }
 
 a {
-  color: #00B7FF;
+  color: #8eace6;
+}
+
+h1 {
+	font-size: 24pt;
+}
+
+.letterRow #letter0 {
+	background-color: #8eace6;
+}
+
+.letterRow #letter1 {
+	background-color: #9ebfff;
+}
+
+.letterRow {
+	text-align: center;
+}
+
+button {
+	border-color: #ebebff;
+	border-radius: 50%;
+	color: #ebebff;
+	font-size: 14pt;
+	width: 35px;
+	height: 35px;
+}
+
+button:hover {
+	background-color: #ff4d4d;
+}
+
+.letterRow #letter0:hover {
+	background-color: #ff4d4d;
+}
+
+.letterRow #letter1:hover {
+	background-color: #ff4d4d;
+}
+
+div #keyboard {
+	text-align: center;
+}
+
+#numberRow button {
+	color: black;
+}
+
+textarea {
+	padding: 5px;
+	margin-bottom: 3%;
+	width: 30%;
+	height: 10%;
+	border-radius: 4%;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
 }
