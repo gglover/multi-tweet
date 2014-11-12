@@ -1,8 +1,11 @@
+var 
+
 exports = module.exports = api;
 
 function api(io) {
   io.on('connection', function(socket){
-      DB.set("user", "hello", REDIS.print);
+      //debugger;
+
       console.log('a user connected');
       DB.get("user", function(err, reply) {
           // reply is null when the key is missing
@@ -11,7 +14,19 @@ function api(io) {
 
       // Socket events
       socket.on('tweet-input', function(msg) {
-          console.log('tweet-input:' + msg);
+          if (msg.length != 1) { return };
+          console.log('tweet-input: ' + msg + " from " + socket.conn.remoteAddress);
+          
+          DB.get('tweet', function(err, reply) {
+            if (err != null) {
+              console.warn('tweet access error');
+              return;
+            } 
+
+            var newMessage = reply + msg
+            DB.set('tweet', reply + msg, DB.print);
+            io.emit('tweet-updated', { tweet: newMessage, lastLetter: msg});
+          });
       });
   });
 }

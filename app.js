@@ -20,8 +20,9 @@ app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
 // Setup KV database
-REDIS = require("redis");
-DB = REDIS.createClient();  // Global
+REDIS = require('redis');
+DB = REDIS.createClient();
+DB.set('tweet', '');
 
 // Setup global config
 CONFIG = require('./config/config.js')
