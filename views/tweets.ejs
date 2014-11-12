@@ -5,26 +5,26 @@
 
 <div id="keyboard">
 <% for (var i = 0; i < charset.length; i++) {
-	if (i > 0) {
-%>
-		<div class="letterRow">
-<%
-	} else {
-%>
-		<div id="numberRow">
-<%
-	}
+	if (i > 0) { %>
+
+		<div class="row letters">
+
+<% } else { %>
+
+		<div id="numberRow" class="row">
+
+<% }
 	for (var j = 0; j < charset[i].length; j++) { 
-    	var currChar = charset[i][j];
-%>
-		<button id="letter<%= Math.floor(j / 2 % 2) %>" class="letter" type="button"><%= currChar %></button>
-<%
-	} 
-%>
+    	var currChar = charset[i][j]; %>
+
+		<button class="<%= Math.floor(j / 2 % 2) ? 'evenPair' : 'oddPair' %> letter" type="button"><%= currChar %></button>
+
+<% } %>
+
 	</div>
-	</br>
-<%
-} %>
+
+<% } %>
+
 </div>
 
 <div id="voting-stats">

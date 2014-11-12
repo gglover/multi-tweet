@@ -17,23 +17,30 @@ var MT_VIEW = {
 
   handleVotingUpdate: function(msg) {
     MT_MODEL.voting[msg.letter] = msg.count;
-    var top5 = MT_MODEL.top5();
-
-    $('.voting-entry').each(function(idx, el) {
-      if (idx < top5.length){
-        $(el).text(top5[idx][0] + " : " + top5[idx][1]);
-      }
-    });
+    MT_VIEW.renderVotingStats();
   },
   
   handleTweetUpdate: function(msg) {
-    console.log(msg);
     MT_MODEL.voting = {};
     $('#tweet-final').val(msg);
+    MT_VIEW.renderVotingStats();
   },
 
   handleTweetInput: function(evt) {
     SOCKET.emit('tweet-input', evt.currentTarget.innerHTML);
+  },
+
+  renderVotingStats: function() {
+    var top5 = MT_MODEL.top5();
+
+    $('.voting-entry').each(function(idx, el) {
+      var $entry = $(el);
+      if (idx < top5.length){
+        $entry.text(top5[idx][0] + " : " + top5[idx][1]);
+      } else {
+        $entry.text('');
+      }
+    });
   }
 };
 

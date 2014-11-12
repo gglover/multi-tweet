@@ -13,21 +13,20 @@ h1 {
 	font-size: 24pt;
 }
 
-.letterRow #letter0 {
+.letters .evenPair {
 	background-color: #8eace6;
 }
 
-.letterRow #letter1 {
+.letters .oddPair {
 	background-color: #9ebfff;
 }
 
-.letterRow {
-	text-align: center;
+.row {
+	margin-bottom: 10px;
 }
 
 button {
 	border-color: #ebebff;
-	border-radius: 50%;
 	color: #ebebff;
 	font-size: 14pt;
 	width: 35px;
