@@ -13,6 +13,10 @@ h1 {
 	font-size: 24pt;
 }
 
+
+
+
+
 .letters .evenPair {
 	background-color: #8eace6;
 }
@@ -31,6 +35,7 @@ button {
 	font-size: 14pt;
 	width: 35px;
 	height: 35px;
+  vertical-align: top;
 }
 
 button:hover {
@@ -53,6 +58,39 @@ div #keyboard {
 	color: black;
 }
 
+
+
+#voting-stats {
+  width: 400px;
+  text-align: left;
+}
+
+#voting-stats > div {
+  width: 100%;
+  padding: 5px;
+}
+
+.voting-entry:nth-child(even) {
+  background-color: #8eace6;
+}
+
+.voting-entry:nth-child(odd) {
+  background-color: #9ebfff;
+}
+
+.voting-bar {
+  background-color: red;
+  display: inline-block;
+  height: 35px;
+}
+
+
+
+
+
+
+
+
 textarea {
 	padding: 5px;
 	margin-bottom: 3%;
@@ -60,6 +98,9 @@ textarea {
 	height: 10%;
 	border-radius: 4%;
 }
+
+
+
 
 a:link {
     text-decoration: none;

@@ -32,13 +32,20 @@ var MT_VIEW = {
 
   renderVotingStats: function() {
     var top5 = MT_MODEL.top5();
+    var highestVotes = top5[0][1];
 
     $('.voting-entry').each(function(idx, el) {
-      var $entry = $(el);
+      var $btn = $(el).find('button');
+      var $bar = $(el).find('.voting-bar');
+
       if (idx < top5.length){
-        $entry.text(top5[idx][0] + " : " + top5[idx][1]);
+        $btn.text(top5[idx][0]);
+        $bar.css({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'});
+
       } else {
-        $entry.text('');
+        $btn.text('');
+        $bar.css({ 'width': 0});
+
       }
     });
   }
