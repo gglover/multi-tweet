@@ -27,7 +27,11 @@ var MT_VIEW = {
   },
 
   handleTweetInput: function(evt) {
-    SOCKET.emit('tweet-input', evt.currentTarget.innerHTML);
+    var chosen = evt.currentTarget.innerHTML;
+    if (chosen == '(space)') {
+      chosen = ' ';
+    }
+    SOCKET.emit('tweet-input', chosen);
   },
 
   renderVotingStats: function() {

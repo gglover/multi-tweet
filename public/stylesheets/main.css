@@ -58,6 +58,19 @@ div #keyboard {
 	color: black;
 }
 
+#space-bar {
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+	height: 35px;
+	background-color: #ebebff;
+	color: #BFBFCF;
+}
+
+#space-bar:hover {
+	background-color: #ff4d4d;
+}
+
 
 
 #voting-stats {
