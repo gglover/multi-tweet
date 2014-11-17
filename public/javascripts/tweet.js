@@ -23,6 +23,12 @@ var MT_VIEW = {
 
     $(document).on('update-voting', MT_VIEW.renderVotingStats);
     $('.letter').click(MT_VIEW.handleTweetInput);
+    $(document).keypress(MT_VIEW.handleTweetInputFromKeyboard);
+  },
+
+  handleTweetInputFromKeyboard: function(evt) {
+    var chr = String.fromCharCode(evt.keyCode);
+    SOCKET.emit('tweet-input', chr);
   },
 
   handleVotingUpdate: function(msg) {
@@ -37,10 +43,14 @@ var MT_VIEW = {
 
   handleTweetInput: function(evt) {
     var chosen = evt.currentTarget.innerHTML;
-    if (chosen == '(space)') {
-      chosen = ' ';
+    if (chosen == 'tweet!') {
+      // post to twitter!
+    } else {
+      if (chosen == '(space)') {
+        chosen = ' ';
+      }
+      SOCKET.emit('tweet-input', chosen);
     }
-    SOCKET.emit('tweet-input', chosen);
   },
 
   renderTweet: function(tweet) {

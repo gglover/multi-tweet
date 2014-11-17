@@ -42,11 +42,7 @@ button:hover {
 	background-color: #ff4d4d;
 }
 
-.letterRow #letter0:hover {
-	background-color: #ff4d4d;
-}
-
-.letterRow #letter1:hover {
+button[class$="letter"]:hover {
 	background-color: #ff4d4d;
 }
 
@@ -54,8 +50,12 @@ div #keyboard {
 	text-align: center;
 }
 
-#numberRow button {
+#numberRow button, .special, #tweet {
 	color: black;
+}
+
+#tweet {
+	width: 70px;
 }
 
 #space-bar {
@@ -63,8 +63,7 @@ div #keyboard {
 	margin-right: auto;
 	width: 30%;
 	height: 35px;
-	background-color: #ebebff;
-	color: #BFBFCF;
+	color: #d9d9e2;
 }
 
 #space-bar:hover {
