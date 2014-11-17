@@ -4,9 +4,13 @@ exports = module.exports = api;
 
 function api(io) {
 
+  // Elapsed seconds since the last set of votes was processed.
+  var votingTime = 0;
+
   io.on('connection', function(socket){
 
       console.log('a user connected');
+      emitCurrentState(socket);
 
       // Socket events
       socket.on('tweet-input', function(msg) {
@@ -26,43 +30,71 @@ function api(io) {
       });
   });
 
-  // Process voting results on interval
-  setInterval(function() {
-    // We should really store this...
+  function emitCurrentState(socket) {
     DB.hgetall('voting', function(err, votes) {
       if (err != null) {
         console.warn('voting access error');
         return;
       }
-
       DB.get('tweet', function(err, tweet) {
         if (err != null) {
           console.warn('voting access error');
           return;
         }
 
-        // Get character with the most votes
-        var top = {char: '', votes: 0};
-        for (input in votes) {
-          if (votes[input] > top.votes) {
-            top = {char: input, votes: votes[input]};
-          } 
-        }
-
-        // Update the tweet
-        var newTweet = tweet + top.char;
-
-        console.log(newTweet);
-
-        io.emit('tweet-updated', newTweet);
-        DB.set('tweet', newTweet);
-
-        // Reset everything...
-        DB.del('voting');
-        DB.hmset('voting', {a: 0});
+        socket.emit('current-state', { voting:       votes, 
+                                       time:         votingTime,
+                                       tweet:        tweet,
+                                       votingLength: CONFIG.votingLength
+        });
       });
     });
+  };
 
-  }, CONFIG.votingLength);
+  // Process voting results on interval
+  setInterval(function() {
+    
+    votingTime += 1;
+
+    if (votingTime > CONFIG.votingLength) {
+      // We should really store this...
+      DB.hgetall('voting', function(err, votes) {
+        if (err != null) {
+          console.warn('voting access error');
+          return;
+        }
+
+        DB.get('tweet', function(err, tweet) {
+          if (err != null) {
+            console.warn('voting access error');
+            return;
+          }
+
+          // Get character with the most votes
+          var top = {char: '', votes: 0};
+          for (input in votes) {
+            if (votes[input] > top.votes) {
+              top = {char: input, votes: votes[input]};
+            } 
+          }
+
+          // Update the tweet
+          var newTweet = tweet + top.char;
+
+          console.log(newTweet);
+
+          io.emit('tweet-updated', newTweet);
+          DB.set('tweet', newTweet);
+
+          // Reset everything...
+          DB.del('voting');
+          DB.hmset('voting', {a: 0});
+        });
+      });
+
+      votingTime = 0;
+    }
+
+  }, 1000);
 
 };

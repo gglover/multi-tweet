@@ -1,5 +1,3 @@
-* Timer
-* Key bindings
 * nginx socket config
 * twitter api
 * fix voting rendering
@@ -10,3 +8,4 @@
 ~~~ stretch ~~~
 * emoji
 * chat
+* backspace
