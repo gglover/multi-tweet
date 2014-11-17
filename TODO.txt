@@ -1,0 +1,12 @@
+* Timer
+* Key bindings
+* nginx socket config
+* twitter api
+* fix voting rendering
+* test multi use functionality
+* visibility of other users
+
+
+~~~ stretch ~~~
+* emoji
+* chat
