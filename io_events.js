@@ -11,6 +11,7 @@ function api(io) {
       // Socket events
       socket.on('tweet-input', function(msg) {
           if (msg.length != 1) { return };
+
           console.log('tweet-input: ' + msg + " from " + socket.conn.remoteAddress);
           
           DB.hmget('voting', msg, function(err, reply) {

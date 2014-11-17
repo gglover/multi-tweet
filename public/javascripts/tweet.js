@@ -13,6 +13,12 @@ var MT_VIEW = {
     SOCKET.on('tweet-updated', MT_VIEW.handleTweetUpdate);
     SOCKET.on('voting-updated', MT_VIEW.handleVotingUpdate);
     $('.letter').click(MT_VIEW.handleTweetInput);
+    $(document).keypress(MT_VIEW.handleTweetInputFromKeyboard);
+  },
+
+  handleTweetInputFromKeyboard: function(evt) {
+    var chr = String.fromCharCode(evt.keyCode);
+    SOCKET.emit('tweet-input', chr);
   },
 
   handleVotingUpdate: function(msg) {
@@ -28,10 +34,14 @@ var MT_VIEW = {
 
   handleTweetInput: function(evt) {
     var chosen = evt.currentTarget.innerHTML;
-    if (chosen == '(space)') {
-      chosen = ' ';
+    if (chosen == 'tweet!') {
+      // post to twitter!
+    } else {
+      if (chosen == '(space)') {
+        chosen = ' ';
+      }
+      SOCKET.emit('tweet-input', chosen);
     }
-    SOCKET.emit('tweet-input', chosen);
   },
 
   renderVotingStats: function() {
