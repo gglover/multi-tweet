@@ -63,17 +63,27 @@ var MT_VIEW = {
       var highestVotes = top5[0][1];
     }
 
+    var $currTweet = $('#tweet-final').val();
+    $currTweet = $currTweet.split(' ');
+    $currTweet = $currTweet[$currTweet.length - 1];
+
     $('.voting-entry').each(function(idx, el) {
       var $btn = $(el).find('button');
       var $bar = $(el).find('.voting-bar');
+      var $barText = $(el).find('.bar-text');
+      var $numVotes = $(el).find('.num-votes');
 
       if (idx < top5.length){
         $btn.text(top5[idx][0]);
         $bar.css({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'});
+        $barText.text($currTweet + top5[idx][0]);
+        //$numVotes.text(top5[idx][1]);
 
       } else {
         $btn.text('');
         $bar.css({ 'width': 0});
+        $barText.text('');
+        //$numVotes.text('');
 
       }
     });
@@ -99,7 +109,15 @@ var MT_TIMER = {
 
   increaseTime: function() {
     MT_TIMER.time++;
-    $('#timer').text(MT_TIMER.votingLength - MT_TIMER.time);
+    var $timeLeft = MT_TIMER.votingLength - MT_TIMER.time;
+    $('#timer').text('00:' + ($timeLeft < 10 ? '0' : '') + $timeLeft);
+    if ($timeLeft < 6) {
+      $('#timer').css({ 'color': '#ff4d4d'});
+      $('#timer').css({ 'font-weight': 'bold'});
+    } else {
+      $('#timer').css({ 'color': 'black'});
+      $('#timer').css({ 'font-weight': 'normal'});
+    }
   }
 }
 

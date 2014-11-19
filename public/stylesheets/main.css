@@ -35,7 +35,7 @@ button {
 	font-size: 14pt;
 	width: 35px;
 	height: 35px;
-  vertical-align: top;
+  	vertical-align: top;
 }
 
 button:hover {
@@ -73,33 +73,58 @@ div #keyboard {
 
 
 #voting-stats {
-  width: 400px;
+  width: 420px;
   text-align: left;
+  float: left;
+  margin-right: 150px;
 }
+
 
 #voting-stats > div {
   width: 100%;
   padding: 5px;
 }
 
-.voting-entry:nth-child(even) {
+
+/*.voting-entry:nth-child(even) {
   background-color: #8eace6;
 }
 
 .voting-entry:nth-child(odd) {
   background-color: #9ebfff;
-}
+}*/
 
 .voting-bar {
-  background-color: red;
+  background-color: #ff4d4d;
   display: inline-block;
   height: 35px;
+  text-align: left;
+  font-size: 14pt;
+  color: #ffcc66;
+}
+
+.bar-text {
+	width: auto;
+	margin-left: 15px;
+	line-height: 35px;
+}
+
+#game-deets {
+	margin-left: 20%;
+	margin-top: 40px;
 }
 
 
 
+#timer-outer {
+	font-size: 40pt;
+	padding-left: 50px;
+}
 
-
+#timer {
+	width: auto;
+	text-align: left;
+}
 
 
 
