@@ -2,51 +2,85 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   text-align: center;
-  background-color: #ffcc66;
+  background-color: #d5a45a;
 }
 
 a {
-  color: #8eace6;
+  color: #e64141  ;
 }
 
 h1 {
 	font-size: 24pt;
+  margin-top: 0px;
 }
+
+.outer-container {
+  width: 700px;
+  height: 500px;
+  position: absolute; 
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+#content {
+  padding: 40px;
+  background-color: #e6d5b4;
+}
+
+#underlay1 {
+  margin-top: 10px;
+  padding: 50px 50px 30px 50px;
+  background-color: #b47320;
+}
+
+#underlay2 {
+  margin-top: 20px;
+  padding: 60px 60px 20px 60px;
+  background-color: #8b5231;
+}
+
 
 
 
 
 
 .letters .evenPair {
-	background-color: #8eace6;
+	background-color: #ff836a;
 }
 
 .letters .oddPair {
-	background-color: #9ebfff;
+	background-color: #e64141;
+}
+
+.letter {
+  float: left;
+  background-color: #aca46a;
 }
 
 .row {
-	margin-bottom: 10px;
+  overflow: hidden;
 }
 
 button {
-	border-color: #ebebff;
+	border: none;
 	color: #ebebff;
 	font-size: 14pt;
 	width: 35px;
 	height: 35px;
-  	vertical-align: top;
+  vertical-align: top;
+
 }
 
 button:hover {
-	background-color: #ff4d4d;
+	background-color: #e6d5b4;
 }
 
 button[class$="letter"]:hover {
-	background-color: #ff4d4d;
+	background-color: #e6d5d4;
 }
 
-div #keyboard {
+#keyboard {
 	text-align: center;
 }
 
@@ -59,15 +93,7 @@ div #keyboard {
 }
 
 #space-bar {
-	margin-left: auto;
-	margin-right: auto;
-	width: 30%;
-	height: 35px;
-	color: #d9d9e2;
-}
-
-#space-bar:hover {
-	background-color: #ff4d4d;
+	width: 385px;
 }
 
 
@@ -75,32 +101,23 @@ div #keyboard {
 #voting-stats {
   width: 420px;
   text-align: left;
-  float: left;
-  margin-right: 150px;
 }
 
 
 #voting-stats > div {
   width: 100%;
-  padding: 5px;
 }
 
 
-/*.voting-entry:nth-child(even) {
-  background-color: #8eace6;
-}
-
-.voting-entry:nth-child(odd) {
-  background-color: #9ebfff;
-}*/
 
 .voting-bar {
   background-color: #ff4d4d;
   display: inline-block;
-  height: 35px;
+  height: 31px;
   text-align: left;
   font-size: 14pt;
-  color: #ffcc66;
+  color: #ebebff;
+  margin: 2px 0px;
 }
 
 .bar-text {
@@ -110,30 +127,32 @@ div #keyboard {
 }
 
 #game-deets {
-	margin-left: 20%;
 	margin-top: 40px;
 }
 
 
 
+
+
 #timer-outer {
 	font-size: 40pt;
-	padding-left: 50px;
+  float: right;
 }
 
 #timer {
-	width: auto;
-	text-align: left;
+	width: 280px;
+	text-align: right;
 }
+
+
 
 
 
 textarea {
 	padding: 5px;
 	margin-bottom: 3%;
-	width: 30%;
+	width: 50%;
 	height: 10%;
-	border-radius: 4%;
 }
 
 

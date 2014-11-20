@@ -2,35 +2,32 @@
 <meta charset="UTF-8"> 
 <h1><a href="https://twitter.com/cute_twoot"> <%= title %> </a></h1>
 <textarea readonly id="tweet-final"></textarea>
-
 <div id="keyboard">
 <% for (var i = 0; i < charset.length; i++) {
 	if (i > 0) { %>
-
 		<div class="row letters">
-
 <% } else { %>
-
 		<div id="numberRow" class="row">
-
 <% }
 	for (var j = 0; j < charset[i].length; j++) { 
     	var currChar = charset[i][j]; %>
-
-		<button class="<%= Math.floor(j / 2 % 2) ? 'evenPair' : 'oddPair' %> letter" type="button"><%= currChar %></button>
-
+  <button class="<%= Math.floor(j / 2 % 2) ? 'evenPair' : 'oddPair' %> letter" type="button"><%= currChar %></button>
 <% } %>
-
 	</div>
-
 <% } %>
-  <button class="special letter">#</button>
-  <button class="special letter">@</button>
-  <button id="space-bar" class="letter">(space)</button>
-  <button id="tweet">tweet!</button>
+  <div id="spceial-buttons"> 
+    <button class="special letter">#</button>
+    <button class="special letter">@</button>
+    <button class="letter" id="space-bar">(space)</button>
+    <button class="letter" id="tweet">tweet!</button>
+  </div>
 </div>
 
 <div id="game-deets">
+  <div id="timer-outer">
+    <div id="timer"></div>
+  </div>
+
   <div id="voting-stats">
     <div class="voting-entry">
       <button disabled class="letter"></button>
@@ -54,9 +51,6 @@
     </div>
   </div>
 
-  <div id="timer-outer">
-    <div id="timer"></div>
-  </div>
 </div>
 
 </div>

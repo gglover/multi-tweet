@@ -80,7 +80,7 @@ var MT_VIEW = {
         //$numVotes.text(top5[idx][1]);
 
       } else {
-        $btn.text('');
+        $btn.text('--');
         $bar.css({ 'width': 0});
         $barText.text('');
         //$numVotes.text('');
@@ -145,9 +145,9 @@ var MT_MODEL = {
     var sorted = [];
     for (var letter in MT_MODEL.voting) {
       sorted.push([letter, MT_MODEL.voting[letter]])
-      sorted.sort(function(a, b) {return a[1] - b[1]})
+      sorted.sort(function(a, b) {return b[1] - a[1]})
     }
-    return sorted.reverse().slice(0, 5);
+    return sorted.slice(0, 5);
   }
 };
 
@@ -159,5 +159,3 @@ $(document).ready( function() {
     MT_VIEW.init(data);
   })
 });
-
-
