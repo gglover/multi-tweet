@@ -54,7 +54,7 @@ var MT_VIEW = {
   },
 
   renderTweet: function(tweet) {
-    $('#tweet-final').val(tweet);
+    $('#tweet-final').text('here\'s what a regular fucking tweet would look like #jfc @obama69 #twolines');
   },
  
   renderVotingStats: function() {
