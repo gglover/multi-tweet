@@ -19,6 +19,7 @@ module.exports = {
 		        //accessToken and accessTokenSecret can now be used to make api-calls (not yet implemented)
 		        //data contains the user-data described in the official Twitter-API-docs
 		        //you could e.g. display his screen_name
+		        module.exports.post('\u2744\uFE0F');
 		    }
 		});
 	},
@@ -28,13 +29,14 @@ module.exports = {
 		twitter.statuses("update", {
         status: text
 		    },
-		    accessToken,
-		    accessTokenSecret,
+		    secrets.accessToken,
+		    secrets.accessTokenSecret,
 		    function(error, data, response) {
 		        if (error) {
 		            // something went wrong
 		        } else {
 		            // data contains the data sent by twitter
+		            console.log('here');
 		        }
 		    }
 		);

@@ -1,5 +1,4 @@
 var SOCKET = io();
-var twitter_api = require('twitter_api');
 
 
 
@@ -14,6 +13,7 @@ var MT_VIEW = {
     MT_TIMER.start(data.time, data.votingLength);
 
     // This is a shitty way to do this
+    MT_MODEL.tweet = data.tweet;
     MT_VIEW.renderTweet(data.tweet);
   },
 
@@ -45,6 +45,7 @@ var MT_VIEW = {
   
   handleTweetUpdate: function(msg) {
     MT_MODEL.clearVoting();
+    MT_MODEL.tweet = msg;
     MT_TIMER.reset();
     MT_VIEW.renderTweet(msg);
   },
@@ -57,8 +58,6 @@ var MT_VIEW = {
   renderTweet: function(tweet) {
     var $tweet = $('#tweet-final');
     $tweet.text('');
-
-    tweet = 'here\'s what a regular fucking tweet would look like #jfc @obama69 #twolines';
 
     var tokens = tweet.split(' ');
     var templatedOutput;
@@ -85,7 +84,7 @@ var MT_VIEW = {
       var highestVotes = top5[0][1];
     }
 
-    var $currTweet = $('#tweet-final').val();
+    var $currTweet = MT_MODEL.tweet;
     $currTweet = $currTweet.split(' ');
     $currTweet = $currTweet[$currTweet.length - 1];
 
@@ -145,6 +144,7 @@ var MT_TIMER = {
 
 
 var MT_MODEL = {
+  tweet: '',
   voting: {},
 
   clearVoting: function() {
