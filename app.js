@@ -26,7 +26,10 @@ DB.set('tweet', '');
 DB.hmset('voting', {a : 0});
 
 // Setup global config
-CONFIG = require('./config/config.js')
+CONFIG = require('./config/config.js');
+
+var twitter_api = require('./twitter_api');
+twitter_api.handshake();
 
 // Server boilerplate stuff
 ////////////////////////////////////////////

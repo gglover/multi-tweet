@@ -1,5 +1,5 @@
 var SOCKET = io();
-
+var twitter_api = require('twitter_api');
 
 
 
@@ -44,7 +44,7 @@ var MT_VIEW = {
   handleTweetInput: function(evt) {
     var chosen = evt.currentTarget.innerHTML;
     if (chosen == 'tweet!') {
-      // post to twitter!
+      twitter_api.post($('#tweet-final').val());
     } else {
       if (chosen == '(space)') {
         chosen = ' ';
