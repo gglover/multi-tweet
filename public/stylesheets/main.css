@@ -16,7 +16,7 @@ h1 {
 
 .outer-container {
   width: 700px;
-  height: 550px;
+  height: 590px;
   position: absolute; 
   left: 0;
   right: 0;
@@ -53,19 +53,22 @@ h1 {
 }
 
 
-
-
-.letters .evenPair {
-	background-color: #ff836a;
+.row:first-of-type .letter, .row:last-of-type .letter {
+  color: black;
+  background-color: #aca46a;
 }
 
-.letters .oddPair {
-	background-color: #e64141;
+.row:first-of-type .letter:hover, .row:last-of-type .letter:hover {
+  background-color: #e6d5b4;
+}
+
+.row:first-of-type .letter.flash, .row:last-of-type .letter.flash {
+  background-color: #e6d5b4;
 }
 
 .letter {
+	background-color: #ff836a;
   float: left;
-  background-color: #aca46a;
 }
 
 .letter.flash, .letter:hover {
@@ -94,16 +97,12 @@ button[class$="letter"]:hover {
 	text-align: center;
 }
 
-#numberRow button, .special, #tweet {
-	color: black;
-}
-
-#tweet {
+.letter[data-value="tweet"] {
 	width: 70px;
 }
 
-#space-bar {
-	width: 385px;
+.letter[data-value=" "] {
+	width: 350px;
 }
 
 

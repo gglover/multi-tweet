@@ -12,7 +12,7 @@ function api(io) {
 
       // Socket events
       socket.on('tweet-input', function(msg) {
-          if (msg.length != 1) { return };
+          if (!validateInput(msg)) { return; }
 
           console.log('tweet-input: ' + msg + " from " + socket.conn.remoteAddress);
           
@@ -23,7 +23,7 @@ function api(io) {
             } 
             var newCount = parseInt(reply[0]) || 1;
             DB.hmset('voting', msg, newCount + 1);
-
+            console.log(msg);
             io.emit('voting-updated', {letter: msg, count: newCount});
           });
       });
@@ -49,6 +49,18 @@ function api(io) {
       });
     });
   };
+
+  function validateInput(msg) {
+    var cs = CONFIG.charset;
+    for (var i = 0; i < cs.length; i++) {
+      var csRow = cs[i]; 
+      for (var j = 0; j < csRow.length; j++) {
+        console.log('msg:' + msg + ' let:' + csRow[j].value);
+        if (msg == csRow[j].value) { return true; }
+      }
+    }
+    return false;
+  }
 
   // Process voting results on interval
   setInterval(function() {
