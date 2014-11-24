@@ -1,4 +1,5 @@
 var exports = module.exports = api;
+var twitter_api = require('./twitter_api')
 
 function api(io) {
 
@@ -23,7 +24,6 @@ function api(io) {
             } 
             var newCount = parseInt(reply[0]) || 1;
             DB.hmset('voting', msg, newCount + 1);
-            console.log(msg);
             io.emit('voting-updated', {letter: msg, count: newCount});
           });
       });
@@ -55,7 +55,6 @@ function api(io) {
     for (var i = 0; i < cs.length; i++) {
       var csRow = cs[i]; 
       for (var j = 0; j < csRow.length; j++) {
-        console.log('msg:' + msg + ' let:' + csRow[j].value);
         if (msg == csRow[j].value) { return true; }
       }
     }
@@ -82,25 +81,31 @@ function api(io) {
           }
 
           // Get character with the most votes
-          var top = {char: '', votes: 0};
+          var top = {value: '', votes: 0};
           for (input in votes) {
             if (votes[input] > top.votes) {
-              top = {char: input, votes: votes[input]};
+              top = {value: input, votes: votes[input]};
             } 
           }
 
-          // Update the tweet
-          var newTweet = tweet + top.char;
+          if (top.value == 'tweet') {
+            DB.set('tweet', '');
+            io.emit('tweet-updated', '');
+            twitter_api.post(tweet);
+            return;
+          }
 
-          console.log(newTweet);
+          // Update the tweet
+          var newTweet = tweet + top.value;
 
           io.emit('tweet-updated', newTweet);
           DB.set('tweet', newTweet);
 
-          // Reset everything...
-          DB.del('voting');
-          DB.hmset('voting', {'' : 0});
         });
+
+        // Reset everything...
+        DB.del('voting');
+        DB.hmset('voting', {'' : 0});
       });
 
       votingTime = 0;

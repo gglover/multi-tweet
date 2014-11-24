@@ -19,7 +19,6 @@ module.exports = {
 		        //accessToken and accessTokenSecret can now be used to make api-calls (not yet implemented)
 		        //data contains the user-data described in the official Twitter-API-docs
 		        //you could e.g. display his screen_name
-		        module.exports.post('\u2744\uFE0F');
 		    }
 		});
 	},

@@ -1,5 +1,6 @@
-* twitter api
+* spacebar doesn't vote right
 * fix voting rendering
+
 * test multi use functionality
 
 ~~~ stretch ~~~

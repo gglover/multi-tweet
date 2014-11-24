@@ -89,19 +89,20 @@ var MT_VIEW = {
     $currTweet = $currTweet[$currTweet.length - 1];
 
     $('.voting-entry').each(function(idx, el) {
-      var $btn = $(el).find('button');
-      var $bar = $(el).find('.voting-bar');
-      var $barText = $(el).find('.bar-text');
-      var $numVotes = $(el).find('.num-votes');
+      var $key = $(el).find('button')
+       ,  $bar = $(el).find('.voting-bar')
+       ,  $barText = $(el).find('.bar-text');
+
 
       if (idx < top5.length && top5[idx][0] != ''){
-        $btn.text(top5[idx][0]);
+        var $newKey = $('.letter[data-value="' + top5[idx][0] + '"]').html();
+        $key.html($newKey);
         $bar.css({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'});
         $barText.text($currTweet + top5[idx][0]);
-        //$numVotes.text(top5[idx][1]);
+      
 
       } else {
-        $btn.text('--');
+        $key.text('--');
         $bar.css({ 'width': 0});
         $barText.text('');
       }
@@ -115,6 +116,7 @@ var MT_TIMER = {
   interval: 0,
 
   start: function(initialTime, votingLength) {
+    clearInterval(MT_TIMER.interval);
     MT_TIMER.votingLength = votingLength;
     MT_TIMER.time = initialTime;
     MT_TIMER.interval = setInterval(MT_TIMER.increaseTime, 1000);
