@@ -2,8 +2,6 @@
 * twitter api
 * fix voting rendering
 * test multi use functionality
-* visibility of other users
-
 
 ~~~ stretch ~~~
 * emoji

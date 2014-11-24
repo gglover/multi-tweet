@@ -11,15 +11,15 @@
 <% }
 	for (var j = 0; j < charset[i].length; j++) { 
     	var currChar = charset[i][j]; %>
-  <button class="<%= Math.floor(j / 2 % 2) ? 'evenPair' : 'oddPair' %> letter" type="button"><%= currChar %></button>
+  <button class="<%= Math.floor(j / 2 % 2) ? 'evenPair' : 'oddPair' %> letter" data-value="<%=currChar%>" type="button"><%= currChar %></button>
 <% } %>
 	</div>
 <% } %>
   <div id="spceial-buttons"> 
-    <button class="special letter">#</button>
-    <button class="special letter">@</button>
-    <button class="letter" id="space-bar">(space)</button>
-    <button class="letter" id="tweet">tweet!</button>
+    <button class="special letter" data-value="#">#</button>
+    <button class="special letter" data-value="@">@</button>
+    <button class="letter" id="space-bar" data-value=" ">(space)</button>
+    <button class="letter" id="tweet" data-value="tweet">tweet!</button>
   </div>
 </div>
 

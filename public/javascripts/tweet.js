@@ -32,6 +32,14 @@ var MT_VIEW = {
   },
 
   handleVotingUpdate: function(msg) {
+    var $key = $('.letter[data-value="'+ msg.letter + '"]');
+
+    // Flash to indicate vote
+    $key.addClass('flash');
+    setTimeout(function() {
+      $key.removeClass('flash');
+    }, 100);
+    console.log($key.text());
     MT_MODEL.updateVoteCount(msg.letter, msg.count);
   },
   
@@ -42,19 +50,33 @@ var MT_VIEW = {
   },
 
   handleTweetInput: function(evt) {
-    var chosen = evt.currentTarget.innerHTML;
-    if (chosen == 'tweet!') {
-      // post to twitter!
-    } else {
-      if (chosen == '(space)') {
-        chosen = ' ';
-      }
-      SOCKET.emit('tweet-input', chosen);
-    }
+    var chosen = $(evt.currentTarget).data('value');
+    SOCKET.emit('tweet-input', chosen);
   },
 
   renderTweet: function(tweet) {
-    $('#tweet-final').text('here\'s what a regular fucking tweet would look like #jfc @obama69 #twolines');
+    var $tweet = $('#tweet-final');
+    $tweet.text('');
+
+    tweet = 'here\'s what a regular fucking tweet would look like #jfc @obama69 #twolines';
+
+    var tokens = tweet.split(' ');
+    var templatedOutput;
+    for (var i = 0; i < tokens.length; i++) {
+      var firstChar = tokens[i].charAt(0);
+      if (firstChar == '#') {
+          templatedOutput =  '<a href="https://twitter.com/hashtag/' + tokens[i].substr(1, tokens[i].length) + '" class="hashtag">';
+          templatedOutput += tokens[i] + '</a>';
+      } else if (firstChar == '@') {
+          templatedOutput =  '<a href="https://twitter.com/' + tokens[i].substr(1, tokens[i].length) + '" class="handle">';
+          templatedOutput += tokens[i] + '</a>';
+      } else {
+          templatedOutput = tokens[i];
+      }
+      tokens[i] = templatedOutput;
+    }
+
+    $tweet.append(tokens.join(' '));
   },
  
   renderVotingStats: function() {
@@ -73,7 +95,7 @@ var MT_VIEW = {
       var $barText = $(el).find('.bar-text');
       var $numVotes = $(el).find('.num-votes');
 
-      if (idx < top5.length){
+      if (idx < top5.length && top5[idx][0] != ''){
         $btn.text(top5[idx][0]);
         $bar.css({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'});
         $barText.text($currTweet + top5[idx][0]);
@@ -83,8 +105,6 @@ var MT_VIEW = {
         $btn.text('--');
         $bar.css({ 'width': 0});
         $barText.text('');
-        //$numVotes.text('');
-
       }
     });
   }
@@ -109,9 +129,9 @@ var MT_TIMER = {
 
   increaseTime: function() {
     MT_TIMER.time++;
-    var $timeLeft = MT_TIMER.votingLength - MT_TIMER.time;
-    $('#timer').text('00:' + ($timeLeft < 10 ? '0' : '') + $timeLeft);
-    if ($timeLeft < 6) {
+    var timeLeft = Math.max(MT_TIMER.votingLength - MT_TIMER.time, 0);
+    $('#timer').text('00:' + (timeLeft < 10 ? '0' : '') + timeLeft);
+    if (timeLeft < 6) {
       $('#timer').css({ 'color': '#ff4d4d'});
       $('#timer').css({ 'font-weight': 'bold'});
     } else {

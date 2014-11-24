@@ -1,6 +1,4 @@
-var 
-
-exports = module.exports = api;
+var exports = module.exports = api;
 
 function api(io) {
 
@@ -89,7 +87,7 @@ function api(io) {
 
           // Reset everything...
           DB.del('voting');
-          DB.hmset('voting', {a: 0});
+          DB.hmset('voting', {'' : 0});
         });
       });
 

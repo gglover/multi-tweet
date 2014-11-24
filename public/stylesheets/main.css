@@ -68,6 +68,10 @@ h1 {
   background-color: #aca46a;
 }
 
+.letter.flash, .letter:hover {
+  background-color: #e6d5b4;
+}
+
 .row {
   overflow: hidden;
 }
@@ -80,10 +84,6 @@ button {
 	height: 35px;
   vertical-align: top;
 
-}
-
-button:hover {
-	background-color: #e6d5b4;
 }
 
 button[class$="letter"]:hover {

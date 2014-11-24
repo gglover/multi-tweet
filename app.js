@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 REDIS = require('redis');
 DB = REDIS.createClient();
 DB.set('tweet', '');
-DB.hmset('voting', {a : 0});
+DB.hmset('voting', {'': 0});
 
 // Setup global config
 CONFIG = require('./config/config.js')
