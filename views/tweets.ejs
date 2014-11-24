@@ -12,7 +12,14 @@
       console.log(cur);
       var text = cur.text || cur.value; %>
 
-      <button class="letter" data-value="<%= cur.value %>" type="button"><%= text %></button>
+      <button class="letter" data-value="<%= cur.value %>" type="button">
+        <% if (text.indexOf('.png', text.length - 4) !== -1) { %>
+            <img src='<%=cur.text %>' height="30" width="30"/>
+        <%  } else {
+        %>
+        <%= text %>
+        <% } %>
+      </button>
 
     <% } %>
 
