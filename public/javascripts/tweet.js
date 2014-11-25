@@ -170,6 +170,18 @@ var MT_MODEL = {
       sorted.sort(function(a, b) {return b[1] - a[1]})
     }
     return sorted.slice(0, 5);
+  },
+
+  charCount: function() {
+    var currTweet = MT_MODEL.tweet;
+    var numChars = 0;
+    for (var i = 0; i < currTweet.length; i++) {
+      if (currTweet[i] == ':') {
+        i = currTweet.indexOf(':', i + 1);
+      }
+      numChars++;
+    }
+    return numChars;
   }
 };
 

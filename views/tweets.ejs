@@ -1,7 +1,7 @@
 <% layout('layout') -%>
 <meta charset="UTF-8"> 
 <h1><a href="https://twitter.com/cute_twoot"> <%= title %> </a></h1>
-<div id="tweet-final"></div>
+<div id="tweet-final"><div id="chars-left">140</div></div>
 <div id="keyboard">
 <% for (var i = 0; i < charset.length; i++) { %>
 
@@ -14,7 +14,7 @@
 
       <button class="letter" data-value="<%= cur.value %>" type="button">
         <% if (text.indexOf('.png', text.length - 4) !== -1) { %>
-            <img src='<%=cur.text %>' height="30" width="30"/>
+            <img src='<%=cur.text %>' height="29" width="29" padding="3"/>
         <%  } else {
         %>
         <%= text %>
