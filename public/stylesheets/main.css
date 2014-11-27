@@ -49,7 +49,7 @@ h1 {
   margin: 25px 0px;
   padding: 15px;
   text-align: left;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 
@@ -79,22 +79,18 @@ h1 {
   overflow: hidden;
 }
 
-button {
-	border: none;
-	color: #ebebff;
-	font-size: 14pt;
-	width: 35px;
-	height: 35px;
-  vertical-align: top;
-
-}
-
-button[class$="letter"]:hover {
-	background-color: #e6d5d4;
-}
-
 #keyboard {
 	text-align: center;
+}
+
+.letter {
+  width: 35px;
+  height: 35px;
+  padding: 0px;
+  border: none;
+  color: #ebebff;
+  font-size: 14pt;
+  vertical-align: top;
 }
 
 .letter[data-value="tweet"] {
@@ -105,11 +101,15 @@ button[class$="letter"]:hover {
 	width: 350px;
 }
 
-#special-buttons {
-  text-align: center;
+.row .letter[data-value^=":"] {
+  background-color: #e64141;
 }
 
-
+.emoji {
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+}
 
 #voting-stats {
   width: 420px;
@@ -125,9 +125,11 @@ button[class$="letter"]:hover {
   display: inline-block;
   height: 31px;
   text-align: left;
-  font-size: 14pt;
+  font-size: 25px;
   color: #ebebff;
   margin: 2px 0px;
+  white-space: nowrap;
+  overflow: scroll;
 }
 
 .voting-entry button {
@@ -136,8 +138,7 @@ button[class$="letter"]:hover {
 
 .bar-text {
 	width: auto;
-	margin-left: 15px;
-	line-height: 35px;
+	margin: 2px 0px 0px 15px;
 }
 
 
@@ -160,9 +161,6 @@ button[class$="letter"]:hover {
 }
 
 
-
-
-
 a:link {
     text-decoration: none;
 }
@@ -177,4 +175,9 @@ a:hover {
 
 a:active {
     text-decoration: underline;
+}
+
+button:focus, input:focus { 
+  outline: none;
+  box-shadow: none; 
 }

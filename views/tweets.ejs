@@ -4,27 +4,20 @@
 <div id="tweet-final"></div>
 <div id="keyboard">
 <% for (var i = 0; i < charset.length; i++) { %>
-
     <div class="row">
-
     <% for (var j = 0; j < charset[i].length; j++) { 
       var cur = charset[i][j];
       console.log(cur);
       var text = cur.text || cur.value; %>
-
-      <button class="letter" data-value="<%= cur.value %>" type="button">
+        <button class="letter" data-value="<%= cur.value %>" type="button">
         <% if (text.indexOf('.png', text.length - 4) !== -1) { %>
-            <img src='<%=cur.text %>' height="30" width="30"/>
-        <%  } else {
-        %>
-        <%= text %>
-        <% } %>
+          <img class="emoji" src="<%= cur.text %>"/>
+        <%  } else { %>
+          <%= text %>
+      <% } %>
       </button>
-
     <% } %>
-
     </div>
-
 <% } %>
 
 </div>

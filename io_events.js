@@ -61,6 +61,16 @@ function api(io) {
     return false;
   }
 
+  function translateTweet(tweet) {
+    var tokens = tweet.split(':');
+    for (var i = 0; i < tokens.length; i++) {
+      if (tokens[i].charAt(0) == '`') {
+        tokens[i] = CONFIG.getEmojiUnicode(tokens[i]);
+      }
+    }
+    return tokens.join('');
+  }
+
   // Process voting results on interval
   setInterval(function() {
     
@@ -91,7 +101,7 @@ function api(io) {
           if (top.value == 'tweet') {
             DB.set('tweet', '');
             io.emit('tweet-updated', '');
-            twitter_api.post(tweet);
+            twitter_api.post(translateTweet(tweet));
             return;
           }
 

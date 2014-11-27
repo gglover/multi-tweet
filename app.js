@@ -22,8 +22,8 @@ app.set('view engine', 'ejs');
 // Setup KV database
 REDIS = require('redis');
 DB = REDIS.createClient();
-DB.set('tweet', '');
-DB.hmset('voting', {'': 0});
+//DB.set('tweet', '');
+//DB.hmset('voting', {'': 0});
 
 // Setup global config
 CONFIG = require('./config/config.js');
