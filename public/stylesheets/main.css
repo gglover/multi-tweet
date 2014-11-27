@@ -52,6 +52,11 @@ h1 {
   font-size: 25px;
 }
 
+#chars-left {
+  color: gray;
+  font-size: 16pt;
+}
+
 
 .row:first-of-type .letter, .row:last-of-type .letter {
   color: black;
