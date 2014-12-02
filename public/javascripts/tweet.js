@@ -59,6 +59,14 @@ var MT_VIEW = {
     $tweet.text('');
     var templated = MT_VIEW.templateTweet(tweet);
     $tweet.append(templated);
+
+    var $charsLeft = $('#chars-left');
+    var $numLeft = 140 - MT_MODEL.charCount();
+    $charsLeft.text($numLeft);
+    if ($numLeft == 0) {
+      // tweet!
+      $charsLeft.text('140');
+    }
   },
  
   renderVotingStats: function() {

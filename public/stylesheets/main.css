@@ -6,7 +6,7 @@ body {
 }
 
 a {
-  color: #e64141  ;
+  color: #e64141;
 }
 
 h1 {
@@ -55,6 +55,7 @@ h1 {
 #chars-left {
   color: gray;
   font-size: 16pt;
+  float: right;
 }
 
 
