@@ -27,6 +27,14 @@ function api(io) {
             io.emit('voting-updated', {letter: msg, count: newCount});
           });
       });
+
+      socket.on('max-chars', function(msg) {
+          alert('boo!');
+          DB.set('tweet', '');
+          io.emit('tweet-updated', '');
+          twitter_api.post(translateTweet(msg));
+          return;
+      });
   });
 
   function emitCurrentState(socket) {

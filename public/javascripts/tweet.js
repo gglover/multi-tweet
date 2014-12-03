@@ -64,7 +64,7 @@ var MT_VIEW = {
     var $numLeft = 140 - MT_MODEL.charCount();
     $charsLeft.text($numLeft);
     if ($numLeft == 0) {
-      // tweet!
+      SOCKET.emit('max-chars', $tweet.text());
       $charsLeft.text('140');
     }
   },
