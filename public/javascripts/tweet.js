@@ -61,12 +61,8 @@ var MT_VIEW = {
     $tweet.append(templated);
 
     var $charsLeft = $('#chars-left');
-    var $numLeft = 140 - MT_MODEL.charCount();
-    $charsLeft.text($numLeft);
-    if ($numLeft == 0) {
-      SOCKET.emit('max-chars', $tweet.text());
-      $charsLeft.text('140');
-    }
+    var numLeft = 140 - MT_MODEL.charCount();
+    $charsLeft.text(numLeft);
   },
  
   renderVotingStats: function() {

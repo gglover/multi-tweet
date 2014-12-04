@@ -27,14 +27,6 @@ function api(io) {
             io.emit('voting-updated', {letter: msg, count: newCount});
           });
       });
-
-      socket.on('max-chars', function(msg) {
-          alert('boo!');
-          DB.set('tweet', '');
-          io.emit('tweet-updated', '');
-          twitter_api.post(translateTweet(msg));
-          return;
-      });
   });
 
   function emitCurrentState(socket) {
@@ -106,10 +98,11 @@ function api(io) {
             } 
           }
 
-          if (top.value == 'tweet') {
+          var translatedTweet = translateTweet(tweet);
+          if (top.value == 'tweet' || translatedTweet.length >= 140) {
             DB.set('tweet', '');
             io.emit('tweet-updated', '');
-            twitter_api.post(translateTweet(tweet));
+            twitter_api.post(translatedTweet);
             return;
           }
 
