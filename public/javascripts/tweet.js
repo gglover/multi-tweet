@@ -15,15 +15,21 @@ var MT_VIEW = {
     // This is a shitty way to do this
     MT_MODEL.tweet = data.tweet;
     MT_VIEW.renderTweet(data.tweet);
+    MT_VIEW.setUserCount(data.users);
   },
 
   bindEvents: function() {
     SOCKET.on('tweet-updated', MT_VIEW.handleTweetUpdate);
     SOCKET.on('voting-updated', MT_VIEW.handleVotingUpdate);
+    SOCKET.on('user-count', MT_VIEW.handleUserCountUpdate);
 
     $(document).on('update-voting', MT_VIEW.renderVotingStats);
     $('.letter').click(MT_VIEW.handleTweetInput);
     $(document).keypress(MT_VIEW.handleTweetInputFromKeyboard);
+  },
+
+  handleUserCountUpdate: function(msg) {
+    MT_VIEW.setUserCount(msg.count);
   },
 
   handleTweetInputFromKeyboard: function(evt) {
@@ -139,6 +145,14 @@ var MT_VIEW = {
         templatedOutput = word;
     }
     return templatedOutput;
+  },
+
+  setUserCount: function(count) {
+    $('title').text('multi-tweet (' + count + ')');
+    count -= 1;
+    var text = "there " + (count == 1 ? 'is 1 person' : ('are ' + count + ' people')) + ' tweeting with you!';
+
+    $('#users-connected').text(text);
   }
 };
 

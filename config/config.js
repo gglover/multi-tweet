@@ -11,6 +11,7 @@ module.exports = {
              [{value: 'tweet', text: 'tweet.png' }, {value: '#'}, {value: '@'}, {value: ' ', text: '( space )'}, {value: ':`computer:', text: 'computer.png'}, {value: ':`floppy:', text: 'floppy.png'}, {value: ':`lady:', text: 'lady.png'}, {value: ':`bird:', text: 'bird.png'}, {value: ':`eggplant:', text: 'eggplant.png'}, {value: ':`angry:', text: 'angry.png'}]
            ],
   votingLength: 10,  // seconds
+  voteThrottle: 200, // ms
   emojiMapping: {
     poo:     '💩',
     leaf:    '🍃', 
