@@ -5,15 +5,22 @@ function api(io) {
 
   // Elapsed seconds since the last set of votes was processed.
   var votingTime = 0;
+  var connectedUsers = 0;
 
   io.on('connection', function(socket){
 
-      console.log('a user connected');
+      connectedUsers++;
       emitCurrentState(socket);
+      broadcastConnectedUsers();
+
+      var lastVoteTime = 0;
 
       // Socket events
       socket.on('tweet-input', function(msg) {
+          if ((Date.now() - lastVoteTime) < CONFIG.voteThrottle) { return; }
           if (!validateInput(msg)) { return; }
+
+          lastVoteTime = Date.now();
 
           console.log('tweet-input: ' + msg + " from " + socket.conn.remoteAddress);
           
@@ -26,6 +33,12 @@ function api(io) {
             DB.hmset('voting', msg, newCount + 1);
             io.emit('voting-updated', {letter: msg, count: newCount});
           });
+      });
+
+      socket.on('disconnect', function () {
+        connectedUsers--;
+        broadcastConnectedUsers();
+        io.sockets.emit('user disconnected');
       });
   });
 
@@ -44,10 +57,15 @@ function api(io) {
         socket.emit('current-state', { voting:       votes, 
                                        time:         votingTime,
                                        tweet:        tweet,
-                                       votingLength: CONFIG.votingLength
+                                       votingLength: CONFIG.votingLength,
+                                       users:        connectedUsers
         });
       });
     });
+  };
+
+  function broadcastConnectedUsers() {
+    io.sockets.emit('user-count', {count: connectedUsers});
   };
 
   function validateInput(msg) {
