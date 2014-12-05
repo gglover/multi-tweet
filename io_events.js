@@ -89,6 +89,17 @@ function api(io) {
     return tokens.join('');
   }
 
+  function charCount(currTweet) {
+    var numChars = 0;
+    for (var i = 0; i < currTweet.length; i++) {
+      if (currTweet[i] == ':') {
+        i = currTweet.indexOf(':', i + 1);
+      }
+      numChars++;
+    }
+    return numChars;
+  }
+
   // Process voting results on interval
   setInterval(function() {
     
@@ -117,7 +128,7 @@ function api(io) {
           }
 
           var translatedTweet = translateTweet(tweet);
-          if (top.value == 'tweet' || translatedTweet.length >= 140) {
+          if (top.value == 'tweet' || charCount(tweet) >= 140) {
             DB.set('tweet', '');
             io.emit('tweet-updated', '');
             twitter_api.post(translatedTweet);
