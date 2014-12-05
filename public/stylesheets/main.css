@@ -55,7 +55,9 @@ h1 {
 #chars-left {
   color: gray;
   font-size: 16pt;
-  float: right;
+  bottom: 2;
+  right: 2;
+  position: absolute;
 }
 
 
@@ -73,9 +75,13 @@ h1 {
 }
 
 .letter {
-	background-color: #ff836a;
+	/*background-color: #ff836a;*/
   float: left;
 }
+
+/*.letter:hover {
+  background-color: #e6d5b4;
+}*/
 
 .letter.flash, .letter:hover {
   background-color: #e6d5b4;
@@ -108,7 +114,27 @@ h1 {
 }
 
 .row .letter[data-value^=":"] {
-  background-color: #e64141;
+  background-color: #CDBF93;
+}
+
+.row .letter[data-value^=":"]:hover {
+  background-color: #e6d5b4;
+}
+
+.letter:nth-of-type(4n), .letter:nth-of-type(4n-1) {
+    background-color: #ff836a;
+}
+.letter:nth-of-type(4n-2), .letter:nth-of-type(4n-3) {
+    background-color: #e64141;
+}
+
+.letter:nth-of-type(4n):hover, .letter:nth-of-type(4n-1):hover, .letter:nth-of-type(4n-2):hover, .letter:nth-of-type(4n-3):hover {
+  background-color: #e6d5b4;
+}
+
+/* number absolute wrapper relative */
+#tweet-wrapper {
+  position: relative;
 }
 
 .emoji {
