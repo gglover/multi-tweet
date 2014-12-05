@@ -1,8 +1,12 @@
-* spacebar doesn't vote right
-* fix voting rendering
-
-* test multi use functionality
+/////* spacebar doesn't vote right
+/////* fix voting rendering
+/////* # emoji broken
+* user count
+* doesn't tweet right charcaterrr
+* throttle user input
+* add stripes
+* char count number move
+/////* space bar input fucked up
 
 ~~~ stretch ~~~
-* emoji
 * chat

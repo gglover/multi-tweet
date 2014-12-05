@@ -27,6 +27,9 @@ var MT_VIEW = {
   },
 
   handleTweetInputFromKeyboard: function(evt) {
+    // Have to do this for space bar triggering two votes
+    document.activeElement.blur();
+
     var chr = String.fromCharCode(evt.keyCode);
     SOCKET.emit('tweet-input', chr);
   },
@@ -82,6 +85,12 @@ var MT_VIEW = {
 
       if (idx < top5.length && top5[idx][0] != ''){
         var $newKey = $('.letter[data-value="' + top5[idx][0] + '"]').html();
+
+        // Space bar escape clause
+        if (top5[idx][0] == ' ') {
+          $newKey = null;
+        }
+
         $key.html($newKey);
         $bar.css({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'});
         $barText.html(MT_VIEW.templateTweet(currTweet + top5[idx][0]));
@@ -96,6 +105,10 @@ var MT_VIEW = {
   },
 
   templateTweet: function(tweet) {
+    // We want custom text if they're about to tweet
+    if (tweet.lastIndexOf('tweet') == tweet.length - 5) {
+      return "Tweet!";
+    }
     var tokens = tweet.split(' ');
     for (var i = 0; i < tokens.length; i++) {
       tokens[i] = MT_VIEW.templateWord(tokens[i]);
@@ -104,11 +117,11 @@ var MT_VIEW = {
   },
 
   templateWord: function(word) {
-    // Convert emoji
-    //word.matchAll(/:[^:]{3,8}:/g, function(res) {
     var emojiTokens = word.split(':');
+    var containsEmoji = false;
     for (var i = 0; i < emojiTokens.length; i++) {
       if (emojiTokens[i].charAt(0) == '`') {
+        containsEmoji = true;
         emojiTokens[i] = '<img class="emoji" src="' + emojiTokens[i].substr(1, emojiTokens[i].length) + '.png"' + '/>';
       }
     }
@@ -116,15 +129,12 @@ var MT_VIEW = {
 
     var firstChar = word.charAt(0);
     var templatedOutput = '';
-    if (firstChar == '#') {
+    if (firstChar == '#' && !containsEmoji) {
         templatedOutput =  '<a href="https://twitter.com/hashtag/' + word.substr(1, word.length) + '" class="hashtag">';
         templatedOutput += word + '</a>';
-    } else if (firstChar == '@') {
+    } else if (firstChar == '@' && !containsEmoji) {
         templatedOutput =  '<a href="https://twitter.com/' + word.substr(1, word.length) + '" class="handle">';
         templatedOutput += word + '</a>';
-    } else if (firstChar == ':') {
-        var emoji = word.replace(/:/g, '');
-        templatedOutput = '<img class="emoji" src="' + emoji + '.png"' + '/>';
     } else {
         templatedOutput = word;
     }

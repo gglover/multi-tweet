@@ -8,7 +8,6 @@
     <div class="row">
     <% for (var j = 0; j < charset[i].length; j++) { 
       var cur = charset[i][j];
-      console.log(cur);
       var text = cur.text || cur.value; %>
         <button class="letter" data-value="<%= cur.value %>" type="button">
         <% if (text.indexOf('.png', text.length - 4) !== -1) { %>
