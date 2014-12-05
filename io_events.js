@@ -104,7 +104,7 @@ function api(io) {
           // Get character with the most votes
           var top = {value: '', votes: 0};
           for (input in votes) {
-            if (votes[input] > top.votes) {
+            if (parseInt(votes[input]) > parseInt(top.votes)) {
               top = {value: input, votes: votes[input]};
             } 
           }

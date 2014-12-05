@@ -8,9 +8,9 @@ module.exports = {
               {value: 'H'}, {value: 'h'}, {value: 'J'}, {value: 'j'}, {value: 'K'}, {value: 'k'}, {value: 'L'}, {value: 'l'}, {value: ':`poo:', text: 'poo.png'}, {value: ':`leaf:', text: 'leaf.png'}], 
              [{value: 'Z'}, {value: 'z'}, {value: 'X'}, {value: 'x'}, {value: 'C'}, {value: 'c'}, {value: 'V'}, {value: 'v'}, {value: 'B'}, {value: 'b'},
               {value: 'N'}, {value: 'n'}, {value: 'M'}, {value: 'm'}, {value: ':`woman:', text: 'woman.png'}, {value: ':`bamboo:', text: 'bamboo.png'}, {value: ':`kiss:', text: 'kiss.png'}, {value: ':`moon:', text: 'moon.png'}, {value: ':`crying:', text: 'crying.png'}, {value: ':`wine:', text: 'wine.png'}],
-             [{value: 'tweet' }, {value: '#'}, {value: '@'}, {value: ' ', text: '( space )'}, {value: ':`computer:', text: 'computer.png'}, {value: ':`floppy:', text: 'floppy.png'}, {value: ':`lady:', text: 'lady.png'}, {value: ':`bird:', text: 'bird.png'}, {value: ':`eggplant:', text: 'eggplant.png'}, {value: ':`angry:', text: 'angry.png'}]
+             [{value: 'tweet', text: 'tweet.png' }, {value: '#'}, {value: '@'}, {value: ' ', text: '( space )'}, {value: ':`computer:', text: 'computer.png'}, {value: ':`floppy:', text: 'floppy.png'}, {value: ':`lady:', text: 'lady.png'}, {value: ':`bird:', text: 'bird.png'}, {value: ':`eggplant:', text: 'eggplant.png'}, {value: ':`angry:', text: 'angry.png'}]
            ],
-  votingLength: 15,  // seconds
+  votingLength: 10,  // seconds
   emojiMapping: {
     poo:     '💩',
     leaf:    '🍃', 
