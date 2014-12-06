@@ -112,7 +112,7 @@ var MT_VIEW = {
 
   templateTweet: function(tweet) {
     // We want custom text if they're about to tweet
-    if (tweet.lastIndexOf('tweet') == tweet.length - 5) {
+    if (tweet.lastIndexOf('tweet') == Math.abs(tweet.length - 5)) {
       return "Tweet!";
     }
     var tokens = tweet.split(' ');

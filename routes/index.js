@@ -6,4 +6,8 @@ router.get('/', function(req, res) {
   res.render('tweets', { title: '@cute_twoot', charset: CONFIG.charset});
 });
 
+router.get('/about', function(req, res) {
+  res.render('about');
+});
+
 module.exports = router;

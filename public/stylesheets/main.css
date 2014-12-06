@@ -15,7 +15,7 @@ h1 {
 }
 
 .outer-container {
-  width: 525px;
+  width: 540px;
   height: 475px;
   position: absolute; 
   left: 0;
@@ -96,7 +96,7 @@ h1 {
 }
 
 .letter {
-  width: 26px;
+  width: 27px;
   height: 27px;
   padding: 0px;
   border: none;
@@ -106,11 +106,11 @@ h1 {
 }
 
 .letter[data-value="tweet"] {
-	width: 52px;
+	width: 54px;
 }
 
 .letter[data-value=" "] {
-	width: 260px;
+	width: 270px;
 }
 
 .row .letter[data-value^=":"] {
@@ -179,9 +179,6 @@ h1 {
 }
 
 
-
-
-
 #timer-outer {
 	font-size: 30pt;
   float: right;
@@ -190,6 +187,12 @@ h1 {
 #timer {
 	width: 210px;
 	text-align: right;
+}
+
+
+footer {
+  margin-top: 10px;
+  text-align: right;
 }
 
 
