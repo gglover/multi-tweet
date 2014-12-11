@@ -26,6 +26,8 @@ var MT_VIEW = {
     $(document).on('update-voting', MT_VIEW.renderVotingStats);
     $('.letter').click(MT_VIEW.handleTweetInput);
     $(document).keypress(MT_VIEW.handleTweetInputFromKeyboard);
+    $(document).keydown(MT_VIEW.handleTweetInputFromKeyboard);
+
   },
 
   handleUserCountUpdate: function(msg) {
