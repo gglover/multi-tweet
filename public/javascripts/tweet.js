@@ -47,7 +47,7 @@ var MT_VIEW = {
     $key.addClass('flash');
     setTimeout(function() {
       $key.removeClass('flash');
-    }, 100);
+    }, 500);
     MT_MODEL.updateVoteCount(msg.letter, msg.count);
   },
   
@@ -150,9 +150,12 @@ var MT_VIEW = {
   setUserCount: function(count) {
     $('title').text('multi-tweet (' + count + ')');
     count -= 1;
-    var text = "there " + (count == 1 ? 'is 1 person' : ('are ' + count + ' people')) + ' tweeting with you!';
+    var textTop = "There " + (count == 1 ? 'is' : 'are') + ' currently';
+    var textBottom = (count == 1 ? 'person' : 'people') + ' tweeting with you!';
 
-    $('#users-connected').text(text);
+    $('#users-connected-top').text(textTop);
+    $('#users-connected').text(count);
+    $('#users-connected-bottom').text(textBottom);
   }
 };
 
