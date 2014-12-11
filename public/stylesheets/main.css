@@ -156,6 +156,7 @@ h1 {
   color: #ebebff;
   margin: 2px 0px;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .voting-entry button {
@@ -203,9 +204,16 @@ div #users-connected-outer {
   background-color: #CDBF93;
 }
 
-footer {
-  margin-top: 10px;
-  text-align: right;
+#about {
+  top: 5;
+  left: 15;
+  position: absolute;
+  color: gray;
+  font-size: 14px;
+}
+
+#about:hover {
+  color: #4c4c4c;
 }
 
 
