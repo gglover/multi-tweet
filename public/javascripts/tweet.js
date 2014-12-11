@@ -98,7 +98,8 @@ var MT_VIEW = {
         }
 
         $key.html($newKey);
-        $bar.css({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'});
+        $bar.stop({clearQueue: true})
+            .animate({ 'width': 90 * (top5[idx][1] / highestVotes) + '%'}, {duration: 100});
         $barText.html(MT_VIEW.templateTweet(currTweet + top5[idx][0]));
       
 
