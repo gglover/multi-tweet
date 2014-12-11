@@ -150,7 +150,7 @@ var MT_VIEW = {
   },
 
   setUserCount: function(count) {
-    $('title').text('multi-tweet (' + count + ')');
+    $('title').text('multi-tweet (' + (count - 1) + ')');
     count -= 1;
     var textTop = "There " + (count == 1 ? 'is' : 'are') + ' currently';
     var textBottom = (count == 1 ? 'person' : 'people') + ' tweeting with you!';
