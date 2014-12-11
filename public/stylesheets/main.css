@@ -159,6 +159,10 @@ h1 {
   overflow: hidden;
 }
 
+.voting-bar .handle, .voting-bar .hashtag {
+  color: #ebebff;;
+}
+
 .voting-entry button {
   border-right: 3px solid black;
 }

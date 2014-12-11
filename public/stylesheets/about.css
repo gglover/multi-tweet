@@ -1,0 +1,27 @@
+span {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+body {
+	text-align: left;
+	font-size: 15px;
+}
+
+h1 {
+	font-size: 20px;
+	text-align: center;
+	margin-top: 6px;
+}
+
+#home {
+  top: 5;
+  left: 15;
+  position: absolute;
+  color: gray;
+  font-size: 14px;
+}
+
+#about:hover {
+  color: #4c4c4c;
+}

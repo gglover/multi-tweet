@@ -26,8 +26,6 @@ var MT_VIEW = {
     $(document).on('update-voting', MT_VIEW.renderVotingStats);
     $('.letter').click(MT_VIEW.handleTweetInput);
     $(document).keypress(MT_VIEW.handleTweetInputFromKeyboard);
-    $(document).keydown(MT_VIEW.handleTweetInputFromKeyboard);
-
   },
 
   handleUserCountUpdate: function(msg) {
@@ -38,7 +36,7 @@ var MT_VIEW = {
     // Have to do this for space bar triggering two votes
     document.activeElement.blur();
 
-    var chr = String.fromCharCode(evt.keyCode);
+    var chr = String.fromCharCode(evt.keyCode || evt.charCode);
     SOCKET.emit('tweet-input', chr);
   },
 
